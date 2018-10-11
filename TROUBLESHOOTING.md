@@ -41,7 +41,7 @@ Please refer to Troubleshooting guide of the base pattern for more known issues 
 
 1) Problem:
 
-If you are using android studio to build the app and on windows, you may face the following issue "Error: Failed to crunch file "C:\CodePattern\LDAP-pattern\IonicMobileApp\pl...."
+If you are using android studio to build the app and on windows, you may face the following issue "Error: Failed to crunch file "C:\CodePattern\Pattern\IonicMobileApp\pl...."
 This is due to the length restriction of the path name in windows.
 
 Solution:
