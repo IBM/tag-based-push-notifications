@@ -7,7 +7,7 @@ Push notifications originate from the server and based on the devices, different
 
 IBM Mobile Foundation provides a unified set of API methods to send either push or SMS notifications to iOS, Android, Windows 8.1 Universal, Windows 10 UWP and Cordova (iOS, Android) applications. The notifications are sent from the MobileFirst Server to the vendor (Apple, Google, Microsoft, SMS Gateways) infrastructure, and from there to the relevant devices. The unified notification mechanism makes the entire process of communicating with the users and devices completely transparent to the developer.
 
-In this code pattern, we are going to use the base code pattern -https://github.com/IBM/MFP-Auth-LDAP - and push notification feature to it. The use case is as below
+In this code pattern, we are going to use the base code pattern - https://github.com/IBM/Ionic-MFP-App - and push notification feature to it. The use case is as below
 •	Users can select an area in google map and subscribe to receive notifications on problems reported in that area
 •	When any user submits a problem in that area, a notification is sent to all the users who have subscribed for the same.
 
@@ -144,8 +144,8 @@ Please note down the server key and sender ID, this will be used in step 10 when
 ### 8.1 Clone repo
 
 ```
-$ git clone https://github.com/IBM/MFP-Auth-LDAP.git
-$ cd MFP-Auth-LDAP
+$ git clone https://github.com/IBM/tag-based-push-notifications.git
+$ cd tag-based-push-notifications
 ```
 
 ### 8.2 Update App ID, Name and Description
@@ -157,7 +157,7 @@ Update `IonicMobileApp/config.xml` as below. Change `id`, `name`, `description` 
 &lt;widget <b>id="org.mycity.myward"</b> version="2.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:mfp="http://www.ibm.com/mobilefirst/cordova-plugin-mfp"&gt;
     <b>&lt;name&gt;MyWard&lt;/name&gt;
     &lt;description&gt;Get your civic issues resolved by posting through this app.&lt;/description&gt;
-    &lt;author email="shivahr@gmail.com" href="https://developer.ibm.com/code/author/shivahr/"&gt;Shiva Kumar H R&lt;/author&gt;</b>
+    &lt;author email="author@test.com" href="https://developer.ibm.com/code/author/"&gt;User&lt;author&gt;</b>
 ...
 </code></pre>
 
