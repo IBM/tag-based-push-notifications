@@ -91,8 +91,7 @@ This project builds on top of https://github.com/IBM/Ionic-MFP-App. Run followin
  * [Step 2. Create Cloudant database and populate it with sample data](https://github.com/IBM/Ionic-MFP-App#step-2-create-cloudant-database-and-populate-it-with-sample-data)
  * [Step 3. Create IBM Cloud Object Storage service and populate it with sample data](https://github.com/IBM/Ionic-MFP-App#step-3-create-ibm-cloud-object-storage-service-and-populate-it-with-sample-data)
  * [Step 4. Create Mobile Foundation service and configure MFP CLI](https://github.com/IBM/Ionic-MFP-App#step-4-create-mobile-foundation-service-and-configure-mfp-cli)
- * [Step 5. Setup FCM for android push notifications](#step-5-setup-fcm-for-android-push-notifications)
- * [Step 6. Register Android App for Google and Facebook Social login](#step-6-register-android-app-for-google-and-facebook-social-login)
+
 
 ## Step 5. Further setup for Cloudant database.
 
