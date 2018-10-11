@@ -157,7 +157,7 @@ Update `IonicMobileApp/config.xml` as below. Change `id`, `name`, `description` 
 &lt;widget <b>id="org.mycity.myward"</b> version="2.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:mfp="http://www.ibm.com/mobilefirst/cordova-plugin-mfp"&gt;
     <b>&lt;name&gt;MyWard&lt;/name&gt;
     &lt;description&gt;Get your civic issues resolved by posting through this app.&lt;/description&gt;
-    &lt;author email="author@test.com" href="https://developer.ibm.com/code/author/"&gt;User&lt;author&gt;</b>
+    &lt;author email="devipriya@test.com" href="https://developer.ibm.com/code/author/dselvara"&gt;Devipriya&lt;/author&gt;</b>
 ...
 </code></pre>
 
