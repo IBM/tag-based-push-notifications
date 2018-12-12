@@ -3,9 +3,9 @@
 # Tag based push notifications using IBM Mobile Foundation
 
 Push notifications have become integral part of mobile applications. For companies to advertise their latest offerings, or for banks or any of the financial institutions to alert customers on transactions, or to notify customers on any important announcements push notifications come in handy. Real time information like weather updates or travel related updates are very useful. If the customer installed a mobile application and subscribed to notifications, then it is the quickest and easiest way for businesses to convey a message to end user and request them to take action if needed.
-Push notifications originate from the server and based on the devices, different services are used to deliver the notifications. 
 
-IBM Mobile Foundation provides a unified set of API methods to send either push or SMS notifications to iOS, Android, Windows 8.1 Universal, Windows 10 UWP and Cordova (iOS, Android) applications. The notifications are sent from the MobileFirst Server to the vendor (Apple, Google, Microsoft, SMS Gateways) infrastructure, and from there to the relevant devices. The unified notification mechanism makes the entire process of communicating with the users and devices completely transparent to the developer.
+
+IBM Mobile Foundation provides a unified set of API methods to send either push or SMS notifications to mobile applications. The unified notification mechanism makes the entire process of communicating with the users and devices completely transparent to the developer.
 
 In this code pattern, we are going to use the base code pattern - https://github.com/IBM/Ionic-MFP-App - and push notification feature to it. The use case is as below
 •	Users can select an area in google map and subscribe to receive notifications on problems reported in that area
@@ -21,7 +21,7 @@ When you have completed this code pattern, you will understand:
 
 •	How to send notifications using Mobile Foundation REST APIs.
 
-•   How to utilise Cloudant geospatial index queries to find a set of locations within a given radius of user location.
+•       How to utilise Cloudant geospatial index queries to find a set of locations within a given radius of user location.
 
 
 
