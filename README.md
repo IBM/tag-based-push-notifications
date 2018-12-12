@@ -7,8 +7,11 @@ Push notifications have become integral part of mobile applications. For compani
 
 IBM Mobile Foundation provides a unified set of API methods to send either push or SMS notifications to mobile applications. The unified notification mechanism makes the entire process of communicating with the users and devices completely transparent to the developer.
 
-In this code pattern, we are going to use the base code pattern - https://github.com/IBM/Ionic-MFP-App - and push notification feature to it. The use case is as below
+In this code pattern, we are going to use the base code pattern - https://github.com/IBM/Ionic-MFP-App - and add push notification feature to it. The use case is as below
+
+
 •	Users can select an area in google map and subscribe to receive notifications on problems reported in that area
+
 •	When any user submits a problem in that area, a notification is sent to all the users who have subscribed for the same.
 
 
