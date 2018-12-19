@@ -202,11 +202,11 @@ Open `MobileFoundationAdapters/MyWardData/src/main/adapter-resources/adapter.xml
 
 
 ### 8.5 Specify Google Sign-in credentials in MFP Adapter
-Open `MobileFoundationAdapters/SocialLoginAdapter/src/main/adapter-resources/adapter.xml ' and update the google client-id created in [step 6](#6-register-android-app-with-google-and-facebook-for-social-login) as shown below
+Open `MobileFoundationAdapters/SocialLoginAdapter/src/main/adapter-resources/adapter.xml ' and update the google client-id created in [step 7](#7-register-android-app-with-google-and-facebook-for-social-login) as shown below
 
 <pre><code>
 &lt;property name="google.clientId"
-                  defaultValue="618106571370-nie902ccc0i3id6sgdu4nc58bslabcde.apps.googleusercontent.com"
+                  defaultValue="01234567890-01234567890987654abcde.apps.googleusercontent.com"
 				  displayName="google client Id"
                   description="OAuth 2.0 client ID that was created for your server. Get it from Google Developers Console
                   at https://console.developers.google.com/projectselector/apis/credentials"/&gt;
@@ -216,20 +216,20 @@ Open `MobileFoundationAdapters/SocialLoginAdapter/src/main/adapter-resources/ada
 ### 8.6 Specify the Facebook AppID and Google clientID in the Ionic App
 Install the Cordova and Ionic Facebook plugin using following commands
 
-$ ionic cordova plugin add cordova-plugin-facebook4 --variable APP_ID="your_appid_from_step6" --variable APP_NAME="your application name"
+$ ionic cordova plugin add cordova-plugin-facebook4 --variable APP_ID="your_appid_from_step7" --variable APP_NAME="your application name"
 
 $ npm install --save @ionic-native/facebook
 
 
 Install the Cordova and Ionic GooglePlus plugin using following commands
 
-$ ionic cordova plugin add cordova-plugin-googleplus --variable REVERSED_CLIENT_ID="reverseclientid_from_step6"
+$ ionic cordova plugin add cordova-plugin-googleplus --variable REVERSED_CLIENT_ID="reverseclientid_from_step7"
 
 $ npm install --save @ionic-native/google-plus
 
 
 
-After the facebook and googleplus plugins are installed, check if the Facebook App ID and Google webclientID obtained in [step 6](#6-register-android-app-with-google-and-facebook-for-social-login) are present in the config.xml file as shown below
+After the facebook and googleplus plugins are installed, check if the Facebook App ID and Google webclientID obtained in [step 7](#7-register-android-app-with-google-and-facebook-for-social-login) are present in the config.xml file as shown below
 
 ```
 <plugin name="cordova-plugin-facebook4" spec="^1.9.1">
@@ -243,7 +243,8 @@ After the facebook and googleplus plugins are installed, check if the Facebook A
     </plugin>
 ```
 
-The ```REVERSED_CLIENT_ID``` is the reverse form of the google webclientID obtained in step6.
+The ```REVERSED_CLIENT_ID``` is the reverse form of the google webclientID obtained in step7.
+For example, if the webClientID is '0123456789-pr0123fhv2efj4635ertkgbn14tda2ha.apps.googleusercontent.com', then the REVERESED_CLIENT_ID will be 'com.googleusercontent.apps.0123456789-pr0123fhv2efj4635ertkgbn14tda2ha'
 
 Also add the webclientID in the auth_handler.ts file in the googlePlusLogin() method.
 
@@ -295,7 +296,7 @@ Launch MFP Dashboard as below:
 
 Verify MFP Adapter configuration as below:
 
-  1. Inside the MFP dashboard, click on the `MyWardData` adapter. Under `Configurations` tab, you should see the various properties we specified in [Step 7.3](#73-specify-cloudant-credentials-in-mfp-adapter) and [Step 7.4](#74-specify-cloud-object-storage-credentials-in-mfp-adapter) for accessing Cloudant database and Cloud Object Storage as shown below. As an alternative to specifying those property values in `MobileFoundationAdapters/MyWardData/src/main/adapter-resources/adapter.xml` as previously shown in [Step 7.3](#73-specify-cloudant-credentials-in-mfp-adapter) and [Step 7.4](#74-specify-cloud-object-storage-credentials-in-mfp-adapter), you can deploy the adapters with empty `defaultValue`, and once the adapter is deployed, change the values on this page.
+  1. Inside the MFP dashboard, click on the `MyWardData` adapter. Under `Configurations` tab, you should see the various properties we specified in [Step 8.3](#83-specify-cloudant-credentials-in-mfp-adapter) and [Step 8.4](#84-specify-cloud-object-storage-credentials-in-mfp-adapter) for accessing Cloudant database and Cloud Object Storage as shown below. As an alternative to specifying those property values in `MobileFoundationAdapters/MyWardData/src/main/adapter-resources/adapter.xml` as previously shown in [Step 8.3](#83-specify-cloudant-credentials-in-mfp-adapter) and [Step 8.4](#84-specify-cloud-object-storage-credentials-in-mfp-adapter), you can deploy the adapters with empty `defaultValue`, and once the adapter is deployed, change the values on this page.
 
   <img src="doc/source/images/MyWardDataConfigurations.png" alt="Option to specify the configuration properties for accessing Cloudant NoSQL DB and Cloud Object Storage in deployed MFP Adapter" width="640" border="10" />
 
