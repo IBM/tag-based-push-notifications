@@ -74,15 +74,15 @@ Included Component
 * [6. Setup FCM for android push notifications ](#step-6-setup-fcm-for-android-push-notifications)
 * [7. Register Android App with Google and Facebook for Social Login ](#step-7-register-android-app-with-google-and-facebook-for-social-login)
 * [8. Download source repo and customize](#step-8-download-source-repo-and-customize)
-  - [8.1 Clone repo](#step-61-clone-repo)
-  - [8.2 Update App ID, Name and Description](#72-update-app-id-name-and-description)
-  - [8.3 Specify Cloudant credentials in MFP adapter](#63-specify-cloudant-credentials-in-mfp-adapter)
-  - [8.4 Specify Cloud Object Storage credentials in MFP Adapter](#64-specify-cloud-object-storage-credentials-in-mfp-adapter)  
-  - [8.5 Specify Google Sign-in credentials in MFP Adapter](#65-specify-google-sign-in-credentials-in-mfp-adapter)
-  - [8.6 Specify the Facebook AppID and Google clientID in the Ionic App](#66-specify-the-facebook-appid-and-google-clientid-in-the-ionic-app)
-* [9. Deploy the MFP Adapters and Test them](#8-deploy-the-mfp-adapters-and-test-them)
-  - [9.1 Build and Deploy the MFP adapters](#71-build-and-deploy-the-mfp-adapters)
-  - [9.2 Launch MFP dashboard and verify adapter configurations](#72-launch-mfp-dashboard-and-verify-adapter-configurations)
+  - [8.1 Clone repo](#81-clone-repo)
+  - [8.2 Update App ID, Name and Description](#82-update-app-id-name-and-description)
+  - [8.3 Specify Cloudant credentials in MFP adapter](#83-specify-cloudant-credentials-in-mfp-adapter)
+  - [8.4 Specify Cloud Object Storage credentials in MFP Adapter](#84-specify-cloud-object-storage-credentials-in-mfp-adapter)  
+  - [8.5 Specify Google Sign-in credentials in MFP Adapter](#85-specify-google-sign-in-credentials-in-mfp-adapter)
+  - [8.6 Specify the Facebook AppID and Google clientID in the Ionic App](#86-specify-the-facebook-appid-and-google-clientid-in-the-ionic-app)
+* [9. Deploy the MFP Adapters and Test them](#step-9-deploy-the-mfp-adapters-and-test-them)
+  - [9.1 Build and Deploy the MFP adapters](#91-build-and-deploy-the-mfp-adapters)
+  - [9.2 Launch MFP dashboard and verify adapter configurations](#92-launch-mfp-dashboard-and-verify-adapter-configurations)
   
 * [10. Run application on Android phone](https://github.com/IBM/Ionic-MFP-App#step-7-run-application-on-android-phone)
 
@@ -216,6 +216,8 @@ Open `MobileFoundationAdapters/SocialLoginAdapter/src/main/adapter-resources/ada
 ### 8.6 Specify the Facebook AppID and Google clientID in the Ionic App
 Install the Cordova and Ionic Facebook plugin using following commands
 
+$ cd &lt;IonicAppDirectory&gt;
+
 $ ionic cordova plugin add cordova-plugin-facebook4 --variable APP_ID="your_appid_from_step7" --variable APP_NAME="your application name"
 
 $ npm install --save @ionic-native/facebook
@@ -273,10 +275,10 @@ $ mfpdev adapter build
 $ mfpdev adapter deploy
 ```
 
-Build and deploy `SocialLoginSecurityCheck` adapter as below.
+Build and deploy `SocialLoginAdapter` adapter as below.
 
 ```
-$ cd ../SocialLoginSecurityCheck/
+$ cd ../SocialLoginAdapter/
 $ mfpdev adapter build
 $ mfpdev adapter deploy
 ```
