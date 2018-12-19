@@ -70,7 +70,7 @@ Included Component
 * [2. Create Cloudant database and populate it with sample data](https://github.com/IBM/Ionic-MFP-App#step-2-create-cloudant-database-and-populate-it-with-sample-data)
 * [3. Create IBM Cloud Object Storage service and populate it with sample data](https://github.com/IBM/Ionic-MFP-App#step-3-create-ibm-cloud-object-storage-service-and-populate-it-with-sample-data)
 * [4. Create Mobile Foundation service and configure MFP CLI](https://github.com/IBM/Ionic-MFP-App#step-4-create-mobile-foundation-service-and-configure-mfp-cli)
-* [5. Create Geospatial Index in Cloudant Database ](#step-51-create-geospatial-index-in-cloudant-database)
+* [5. Create Geospatial Index in Cloudant Database ](#51-create-geospatial-index-in-cloudant-database)
 * [6. Setup FCM for android push notifications ](#step-6-setup-fcm-for-android-push-notifications)
 * [7. Register Android App with Google and Facebook for Social Login ](#step-7-register-android-app-with-google-and-facebook-for-social-login)
 * [8. Download source repo and customize](#step-8-download-source-repo-and-customize)
@@ -113,7 +113,7 @@ if (doc.geoLocation && doc.geoLocation.coordinates)
 
 Given location co-ordinates (latitude,longitude), this index helps to query the grievances reported within a given radius with centre as this co-ordinate.
 
-###5.2 Loading data into Cloudant database
+### 5.2 Loading data into Cloudant database
 Step 2 in this readme has instructions to load data into the Cloudant database. Sample data has been provided. This sample data is for location 'Hoskote' near Bangalore, India. The 'MyWard' application loads the home page with the issues that are reported in the area of the current user location. So to test the application, please load few entries of data (in the same format as the Sample data)  that belongs to the location where the test device is located. These entries will show up in the home page on login. If there are no matching entries available in the database, then a message will pop up that "No issues reported in your current location". You can also add new entries for your current location through the 'MyWard' application 'Report New' page.
 
 
