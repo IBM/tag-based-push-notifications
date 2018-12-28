@@ -10,10 +10,7 @@
 
 ## Step 1. Use Ionic-MFP-App as a starting point for this project
 
-This project builds on top of the app built in https://github.com/IBM/Ionic-MFP-App (referred to as base pattern in sections below). In this code pattern, we will enhance the 
-app with social Login authentication mechanism and tag based Push notifications.
-
-
+This project builds on top of the app built in https://github.com/IBM/Ionic-MFP-App (referred to as base pattern in sections below). In this code pattern, we will enhance the app with social Login authentication mechanism and tag based Push notifications.
 
 Copy Ionic Mobile app and Mobile Foundation adapters from parent repo as per instructions in 
 http://bit-traveler.blogspot.in/2012/08/git-copy-file-or-directory-from-one.html as shown below.
@@ -33,7 +30,7 @@ $ cd Ionic-MFP-App
 $ git format-patch -o ../gitpatches/ --root IonicMobileApp/ MobileFoundationAdapters/
 ```
 
-We will be using only the UserLogin and SocialLogin adapters from this base project.
+We will be using only the `UserLogin` and `SocialLogin` adapters from this base project.
 There are modifications to the MyWardData adapter and PushAPI adapter is newly added for this pattern. So please use these 2 adapters from the Push notification code pattern only.
 
 
@@ -51,7 +48,7 @@ $ git push
 
 ### 2.1 Enabling the server
 
-In this pattern, the 'SocialLogin' security check is responsible for validating the challenge that was sent from the client with the social platform token.
+In this pattern, the `SocialLogin` security check is responsible for validating the challenge that was sent from the client with the social platform token.
 The security check expects to get the JSON response from the app as described:
 ```
 {
@@ -59,15 +56,18 @@ The security check expects to get the JSON response from the app as described:
   "token"  : "..."
 }
 ```
-The SocialLoginAdapter available under MobileFoundationAdapters implements this securitycheck.
-For more information on the securitycheck implementation please refer to this link - https://mobilefirstplatform.ibmcloud.com/blog/2016/04/06/social-login-with-ibm-mobilefirst-platform-foundation/
-Deploy this adapter following the instructions in this repository Readme.
+The `SocialLoginAdapter` available under `MobileFoundationAdapters` implements this `securitycheck`.
+For more information on the `securitycheck` implementation please refer to this link:
+```
+https://mobilefirstplatform.ibmcloud.com/blog/2016/04/06/social-login-with-ibm-mobilefirst-platform-foundation/
+```
+Deploy this adapter following the instructions in this repository `Readme`.
 
 ### 2.2 Enabling the client
 
 #### 2.2.1 Add the login buttons in the application login screen
 
-Add the following code in the login.html file post the 'Sign In' Button.
+Add the following code in the login.html file post the `Sign In` Button.
 <pre><code>
 &lt;div padding&gt;
       &lt;button ion-button block (click)="fbLogin()" icon-start&gt;
@@ -88,7 +88,7 @@ Add the following code in the login.html file post the 'Sign In' Button.
 
 #### 2.2.2 Add the onclick methods
 
-Add the following methods in the login.ts file.
+Add the following methods in the `login.ts` file.
 
 
 <pre><code>
@@ -103,10 +103,9 @@ googleLogin(){
   }
 </pre></code>
 
-####2.2.3 Add the login methods in the authHandler Provider
+#### 2.2.3 Add the login methods in the authHandler Provider
 
-Add the following code in the authHandler.ts file post the login method
-facebookLogin() method invokes the facebook.login method and receives a token. This token is passed to loginWithFb() method where the  MFP WLAuthorization login API is invoked to validate the credentials using the SocialLogin securitycheck. Similar logic is applied by the google login methods - googlePlusLogin() and  loginWithGoogle().
+Add the following code in the `authHandler.ts` file post the login method `facebookLogin()` method invokes the `facebook.login` method and receives a token. This token is passed to `loginWithFb()` method where the MFP WLAuthorization login API is invoked to validate the credentials using the `SocialLogin securitycheck`. Similar logic is applied by the google login methods - `googlePlusLogin()` and  `loginWithGoogle()`.
 
 <pre><code>
 
@@ -210,10 +209,10 @@ facebooklogin(){
 
 #### 2.2.4 Update the Resource Adapter invocation calls
 
-The WLResourceRequest calls in my-ward-data.ts invoke the procedures in MyWardData adapter to get the application data. The application has 2 types of logins - enterprise login or the social login mapped to 2 security checks - UserLogin and SocialLogin. The logged in user would have either cleared the UserLogin security check or the SocialLogin security check but not both, access has to be given to that user.
+The `WLResourceRequest` calls in `my-ward-data.ts` invoke the procedures in MyWardData adapter to get the application data. The application has 2 types of logins - enterprise login or the social login mapped to 2 security checks - `UserLogin` and `SocialLogin`. The logged in user would have either cleared the `UserLogin` security check or the `SocialLogin` security check but not both, access has to be given to that user.
 MyWardData adapter has the respective endpoints which are protected by each of these security checks.
 
-In my-ward-data.ts, replace the WLResourceRequest calls with the following code.
+In `my-ward-data.ts`, replace the `WLResourceRequest` calls with the following code.
 The latitude, longitude parameters are used in the Cloudant geospatial query executed by the MyWardData adapter to retrieve all the grievances within a particular radius of the user current location.
 
 load() :
@@ -264,7 +263,7 @@ if (this.authHandler.getLoginSecurityCheck() == 'UserLogin')
 
 #### 3.2.5 Add the logout functionality
 
-Add the logout icon post the 'add' icon in the home.html file as shown below
+Add the logout icon post the `add` icon in the home.html file as shown below
 
 
 <pre><code>
@@ -278,7 +277,7 @@ Add the logout icon post the 'add' icon in the home.html file as shown below
 
 </code></pre>
 
-Add the following logout code in the home.ts file
+Add the following logout code in the `home.ts` file
 
 <pre><code>
 
@@ -293,7 +292,7 @@ logout(){
 
 </code></pre>
 
-Implement the logout code in authHandler.ts as below
+Implement the logout code in `authHandler.ts` as below
 
 <pre><code>
 
@@ -323,10 +322,10 @@ logout() {
 
 </code></pre>
 
-##3.  Support tag based Push notification
+## 3.  Support tag based Push notification
 
 ### 3.1 Enabling the server
-Let us see the changes that are required to be made on the server side code of the base pattern(https://github.com/IBM/Ionic-MFP-App )
+Let us see the changes that are required to be made on the server side code of the base pattern (https://github.com/IBM/Ionic-MFP-App)
 
 #### 3.1.1 Push API adapter
 
@@ -359,13 +358,13 @@ Please refer to the complete source code of the MyWardData adapter in this repos
 Build and deploy the adapter to the Mobile Foundation server.
   
 ### 3.2 Enabling the client
-Let us see the changes that are required to be made on the client side code of the base pattern(https://github.com/IBM/Ionic-MFP-App )
+Let us see the changes that are required to be made on the client side code of the base pattern (https://github.com/IBM/Ionic-MFP-App)
 
 #### 3.2.1 Add Watch Area page
-Add a new page in the ionic app under  IonicMobileApp/src/pages/ with name 'watch-area'.
-This page will be invoked on click of the 'Watch Area' icon on the home page. The user will be able to select a location in the map and submit to see the grievances within a given radius of that particular location. Also the user can subscribe to receive any notifications on any new grievances submitted on that particular location. Google GeoCoding API and cloudant geospatial index queries are used to handle the location coordinates related actions.
+Add a new page in the ionic app under `IonicMobileApp/src/pages/` with name `watch-area`.
+This page will be invoked on click of the `Watch Area` icon on the home page. The user will be able to select a location in the map and submit to see the grievances within a given radius of that particular location. Also the user can subscribe to receive any notifications on any new grievances submitted on that particular location. Google GeoCoding API and cloudant geospatial index queries are used to handle the location coordinates related actions.
 
-Update the  IonicMobileApp/src/pages/watch-area/watch-area.html as below
+Update the `IonicMobileApp/src/pages/watch-area/watch-area.html` as below
 
 <pre><code>
 
@@ -397,7 +396,7 @@ Update the  IonicMobileApp/src/pages/watch-area/watch-area.html as below
 
 </code></pre>
 
-Update the  IonicMobileApp/src/pages/watch-area/watch-area.scss as below
+Update the `IonicMobileApp/src/pages/watch-area/watch-area.scss` as below
 
 <pre><code>
 page-watch-area {
@@ -410,7 +409,7 @@ page-watch-area {
 </code>
 </pre>
 
-Update the  IonicMobileApp/src/pages/watch-area/watch-area.ts as below
+Update the `IonicMobileApp/src/pages/watch-area/watch-area.ts` as below
 
 
 <pre><code>
@@ -609,11 +608,11 @@ export class WatchAreaPageModule {}
 
 #### 3.2.2 Add Pushservice Provider
 
-When the user clicks on the 'Receive notification' button in the 'Watch Area' page 'Pushservice' provider method is called. This method checks if the user subscribed tag(location name) is present in the Mobile Foundation server by invoking the 'PushAPI' adapter. When the call is returned successful, the provider issues calls to register the device and subscribe to the tag in the same order.
+When the user clicks on the `Receive notification` button in the `Watch Area` page `Pushservice` provider method is called. This method checks if the user subscribed tag (location name) is present in the Mobile Foundation server by invoking the `PushAPI` adapter. When the call is returned successful, the provider issues calls to register the device and subscribe to the tag in the same order.
 
-Add provider by name 'pushservice' under IonicMobileApp/src/providers.
+Add provider by name `pushservice` under `IonicMobileApp/src/providers`.
  
-Update the IonicMobileApp/src/providers/pushservice/pushservice.ts with code below.
+Update the `IonicMobileApp/src/providers/pushservice/pushservice.ts` with code below.
 
 <pre><code>
 /// <reference path="../../../plugins/cordova-plugin-mfp-push/typings/mfppush.d.ts" />
@@ -705,7 +704,7 @@ export class PushserviceProvider {
 
 When a user submits a new grievance in a location, a notification has to be sent to all the users who have subscribed to receive notification for issues on that location.
 
-Update the uploadImage() call in the submit() method in the IonicMobileApp/src/pages/report-new/report-new.ts file with the code below
+Update the `uploadImage()` call in the `submit()` method in the `IonicMobileApp/src/pages/report-new/report-new.ts` file with the code below
 <pre><code>
 
  this.myWardDataProvider.uploadImage(imageFilename, this.capturedImage).then(
@@ -724,7 +723,7 @@ Update the uploadImage() call in the submit() method in the IonicMobileApp/src/p
                         })
 </code></pre>
 
-Add the implementation for sendNotification() method in the same file
+Add the implementation for `sendNotification()` method in the same file
 
 <pre><code>
 sendNotification(){
