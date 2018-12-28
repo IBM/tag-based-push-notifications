@@ -76,13 +76,13 @@ Included Component
 * [8. Download source repo and customize](#step-8-download-source-repo-and-customize)
   - [8.1 Clone repo](#81-clone-repo)
   - [8.2 Update App ID, Name and Description](#82-update-app-id-name-and-description)
-  - [8.3 Specify Cloudant credentials in MFP adapter](#83-specify-cloudant-credentials-in-mfp-adapter)
-  - [8.4 Specify Cloud Object Storage credentials in MFP Adapter](#84-specify-cloud-object-storage-credentials-in-mfp-adapter)  
-  - [8.5 Specify Google Sign-in credentials in MFP Adapter](#85-specify-google-sign-in-credentials-in-mfp-adapter)
+  - [8.3 Specify Cloudant credentials in MobileFoundation adapter](#83-specify-cloudant-credentials-in-mobilefoundation-adapter)
+  - [8.4 Specify Cloud Object Storage credentials in MobileFoundation Adapter](#84-specify-cloud-object-storage-credentials-in-mobilefoundation-adapter)  
+  - [8.5 Specify Google Sign-in credentials in MobileFoundation Adapter](#85-specify-google-sign-in-credentials-in-mobilefoundation-adapter)
   - [8.6 Specify the Facebook AppID and Google clientID in the Ionic App](#86-specify-the-facebook-appid-and-google-clientid-in-the-ionic-app)
-* [9. Deploy the MFP Adapters and Test them](#step-9-deploy-the-mfp-adapters-and-test-them)
-  - [9.1 Build and Deploy the MFP adapters](#91-build-and-deploy-the-mfp-adapters)
-  - [9.2 Launch MFP dashboard and verify adapter configurations](#92-launch-mfp-dashboard-and-verify-adapter-configurations)
+* [9. Deploy the MobileFoundation Adapters](#step-9-deploy-the-mobilefoundation-adapters)
+  - [9.1 Build and Deploy the MobileFoundation adapters](#91-build-and-deploy-the-mfp-adapters)
+  - [9.2 Launch MobileFoundation dashboard and verify adapter configurations](#92-launch-mobilefoundation-dashboard-and-verify-adapter-configurations)
   
 * [10. Run application on Android phone](https://github.com/IBM/Ionic-MFP-App#step-7-run-application-on-android-phone)
 
@@ -119,14 +119,7 @@ Step 2 in this readme has instructions to load data into the Cloudant database. 
 
 ## Step 6. Setup FCM for android push notifications
 
-Android devices use the Firebase Cloud Messaging (FCM) service for push notifications. To setup FCM:
-
-1. Visit the [Firebase Console](https://console.firebase.google.com/?pli=1).
-2. Create a new project and provide a project name.
-3. Click on the Settings "cog wheel" icon and select Project settings.
-4. Click the Cloud Messaging tab to generate a Server API Key and a Sender ID and click Save.
-
-Please note down the server key and sender ID, this will be used in step 10 when the application is deployed to the Mobile Foundation server.
+Obtain your notification provider credentials, create a FCM project and add the same to your Android application. Include the package name of your application as com.ibm.mobilefirstplatform.clientsdk.android.push. Refer the documentation [here](https://console.bluemix.net/docs/services/mobilepush/push_step_1.html#push_step_1_android) , until the step where you have finished generating the google-services.json file. Note down the sender ID, ServerKey and save the google-services.json file. These details will be used in step 10.
 
 
 ## Step 7. Register Android App with Google and Facebook for Social Login
@@ -136,7 +129,7 @@ Please note down the server key and sender ID, this will be used in step 10 when
 
 <img src="doc/source/images/GoogleClientID.png" alt="Google client id" width="1024" border="10" />
 
-2. Get the Facebook App ID by registering that app at [Facebook apps console](https://developers.facebook.com/apps/)
+2. Get the Facebook App ID by registering the app at [Facebook apps console](https://developers.facebook.com/apps/)
 
 <img src="doc/source/images/FacebookAppID.png" alt="Facebook app ID" width="1024" border="10" />
 
@@ -164,11 +157,11 @@ Update `IonicMobileApp/config.xml` as below. Change `id`, `name`, `description` 
 ...
 </code></pre>
 
-### 8.3 Specify Cloudant credentials in MFP adapter
+### 8.3 Specify Cloudant credentials in MobileFoundation adapter
 
 Open `MobileFoundationAdapters/MyWardData/src/main/adapter-resources/adapter.xml` and update the following properties to point to the Cloudant database created in [Step 2](#step-2-create-cloudant-database-and-populate-it-with-sample-data).
  * Update `key` and `password` with the Cloudant API key as generated in [Step 2.2](#22-generate-cloudant-api-key).
- * For property `account`, specify the Cloudant Dashboard URL portion upto (and including) *-bluemix.cloudant.com* as shown in the snapshot of [Step 2.2](#22-generate-cloudant-api-key).
+ * For property `account`, specify the Cloudant Dashboard URL portion upto (and including) *-bluemix*.
  * For property `DBName`, leave the default value of `myward` as-is.
 
 <pre><code>
@@ -182,7 +175,7 @@ Open `MobileFoundationAdapters/MyWardData/src/main/adapter-resources/adapter.xml
 </code></pre>
 
 
-### 8.4 Specify Cloud Object Storage credentials in MFP Adapter
+### 8.4 Specify Cloud Object Storage credentials in MobileFoundation Adapter
 
 Open `MobileFoundationAdapters/MyWardData/src/main/adapter-resources/adapter.xml` and update the following properties to point to the Cloud Object Storage created in [Step 3](#step-3-create-ibm-cloud-object-storage-service-and-populate-it-with-sample-data).
   * Specify value for `bucketName` as created in [Step 3.1](#31-create-ibm-cloud-object-storage). 
@@ -201,8 +194,8 @@ Open `MobileFoundationAdapters/MyWardData/src/main/adapter-resources/adapter.xml
 
 
 
-### 8.5 Specify Google Sign-in credentials in MFP Adapter
-Open `MobileFoundationAdapters/SocialLoginAdapter/src/main/adapter-resources/adapter.xml ' and update the google client-id created in [step 7](#7-register-android-app-with-google-and-facebook-for-social-login) as shown below
+### 8.5 Specify Google Sign-in credentials in MobileFoundation Adapter
+Open `MobileFoundationAdapters/SocialLoginAdapter/src/main/adapter-resources/adapter.xml ' and update the google client-id created in [step 7](#step-7-register-android-app-with-google-and-facebook-for-social-login) as shown below
 
 <pre><code>
 &lt;property name="google.clientId"
@@ -214,24 +207,25 @@ Open `MobileFoundationAdapters/SocialLoginAdapter/src/main/adapter-resources/ada
 </code></pre>
 
 ### 8.6 Specify the Facebook AppID and Google clientID in the Ionic App
-Install the Cordova and Ionic Facebook plugin using following commands
 
-$ cd &lt;IonicAppDirectory&gt;
+1. Install the Cordova and Ionic Facebook plugin using following commands (Python2 is a pre-requisite)
 
+$ cd IonicMobileApp/
 $ ionic cordova plugin add cordova-plugin-facebook4 --variable APP_ID="your_appid_from_step7" --variable APP_NAME="your application name"
-
 $ npm install --save @ionic-native/facebook
+Note: If you get a message "Looks like a fresh checkout!" please go ahead and type Yes to install the project dependencies. This might take a few minutes. 
 
 
-Install the Cordova and Ionic GooglePlus plugin using following commands
+2. Install the Cordova and Ionic GooglePlus plugin using following commands
 
 $ ionic cordova plugin add cordova-plugin-googleplus --variable REVERSED_CLIENT_ID="reverseclientid_from_step7"
-
 $ npm install --save @ionic-native/google-plus
 
+Note : The ```REVERSED_CLIENT_ID``` is the reverse form of the google webclientID obtained in step7.
+For example, if the webClientID is '0123456789-pr0123fhv2efj4635ertkgbn14tda2ha.apps.googleusercontent.com', then the REVERESED_CLIENT_ID will be 'com.googleusercontent.apps.0123456789-pr0123fhv2efj4635ertkgbn14tda2ha'
 
 
-After the facebook and googleplus plugins are installed, check if the Facebook App ID and Google webclientID obtained in [step 7](#7-register-android-app-with-google-and-facebook-for-social-login) are present in the config.xml file as shown below
+3. After the facebook and googleplus plugins are installed, check if the Facebook App ID and Google webclientID obtained in [step 7](#7-register-android-app-with-google-and-facebook-for-social-login) are present in the config.xml file as shown below
 
 ```
 <plugin name="cordova-plugin-facebook4" spec="^1.9.1">
@@ -245,15 +239,12 @@ After the facebook and googleplus plugins are installed, check if the Facebook A
     </plugin>
 ```
 
-The ```REVERSED_CLIENT_ID``` is the reverse form of the google webclientID obtained in step7.
-For example, if the webClientID is '0123456789-pr0123fhv2efj4635ertkgbn14tda2ha.apps.googleusercontent.com', then the REVERESED_CLIENT_ID will be 'com.googleusercontent.apps.0123456789-pr0123fhv2efj4635ertkgbn14tda2ha'
-
 Also add the webclientID in the auth_handler.ts file in the googlePlusLogin() method.
 
 
-## Step 9. Deploy the MFP Adapters and Test them
+## Step 9. Deploy the MobileFoundation Adapters
 
-### 9.1 Build and Deploy the MFP adapters
+### 9.1 Build and Deploy the MobileFoundation adapters
 
 Build and deploy `MyWardData` Adapter as below.
 
@@ -290,7 +281,7 @@ $ mfpdev adapter build
 $ mfpdev adapter deploy
 ```
 
-### 9.2 Launch MFP dashboard and verify adapter configurations
+### 9.2 Launch MobileFoundation dashboard and verify adapter configurations
 
 Launch MFP Dashboard as below:
   * In the [IBM Cloud dashboard](https://console.bluemix.net/dashboard/), under `Cloud Foundry Services`, click on the `Mobile Foundation` service you created in [Step 4](https://github.com/IBM/Ionic-MFP-App#step-4-create-mobile-foundation-service-and-configure-mfp-cli). The service overview page that gets shown, will have the MFP dashboard embedded within it. You can also open the MFP dashboard in a separate browser tab by appending `/mfpconsole` to the *url* mentioned in [Step 4](https://github.com/IBM/Ionic-MFP-App#step-4-create-mobile-foundation-service-and-configure-mfp-cli).
@@ -298,7 +289,7 @@ Launch MFP Dashboard as below:
 
 Verify MFP Adapter configuration as below:
 
-  1. Inside the MFP dashboard, click on the `MyWardData` adapter. Under `Configurations` tab, you should see the various properties we specified in [Step 8.3](#83-specify-cloudant-credentials-in-mfp-adapter) and [Step 8.4](#84-specify-cloud-object-storage-credentials-in-mfp-adapter) for accessing Cloudant database and Cloud Object Storage as shown below. As an alternative to specifying those property values in `MobileFoundationAdapters/MyWardData/src/main/adapter-resources/adapter.xml` as previously shown in [Step 8.3](#83-specify-cloudant-credentials-in-mfp-adapter) and [Step 8.4](#84-specify-cloud-object-storage-credentials-in-mfp-adapter), you can deploy the adapters with empty `defaultValue`, and once the adapter is deployed, change the values on this page.
+  1. Inside the MobileFoundation dashboard, click on the `MyWardData` adapter. Under `Configurations` tab, you should see the various properties we specified in [Step 8.3](#83-specify-cloudant-credentials-in-mfp-adapter) and [Step 8.4](#84-specify-cloud-object-storage-credentials-in-mfp-adapter) for accessing Cloudant database and Cloud Object Storage as shown below. As an alternative to specifying those property values in `MobileFoundationAdapters/MyWardData/src/main/adapter-resources/adapter.xml` as previously shown in [Step 8.3](#83-specify-cloudant-credentials-in-mfp-adapter) and [Step 8.4](#84-specify-cloud-object-storage-credentials-in-mfp-adapter), you can deploy the adapters with empty `defaultValue`, and once the adapter is deployed, change the values on this page.
 
   <img src="doc/source/images/MyWardDataConfigurations.png" alt="Option to specify the configuration properties for accessing Cloudant NoSQL DB and Cloud Object Storage in deployed MFP Adapter" width="640" border="10" />
 
@@ -321,16 +312,21 @@ Follow the instructions in [Step 7](https://github.com/IBM/Ionic-MFP-App#step-7-
 
 <img src="doc/source/images/Pushconfiguration.png" width="640"  border="10" />
 
-2.In the Runtime settings of the application please create a confidential client with name 'test', secret 'test' and scope '**'.
+2. Add the google-service.json file generated in step 6 to the root of the android project directory. 
+
+3. In the Runtime settings of the application please create a confidential client with name 'test', secret 'test' and scope '**'.
 If different confidential client is used, then please modify the PushAPI adapter code to use the right confidential client encoded name and secret.
 
-Complete the remaining steps to run the application in the above link.
+Complete the remaining steps to run the application in the above link. 
+To test the Push notification feature, in one instance of the application, subscribe to receive notifications for a particular area in the 'Watch Area' page. In another instance of the application (running on a different phone) create a new grievance for the same area. The notification of the newly created grievance will be seen on the first instance of the application. 
+If you are using emulator to test, please setup the co-ordinates of the emulator to point to your current location.
+Please refer to the Troubleshooting section for more information on issues that you might face during the Push configuration. 
 
 <img src="doc/source/images/MyWardAppLoginPage.png" alt="MyWard App - Login Page" width="240" border="10" length="300" />
 
   <img src="doc/source/images/MyWardAppHomePage.png" alt="MyWard App - Home Page" width="240" border="10" /> <img src="doc/source/images/MyWardAppWatchAreaPage.png" alt="MyWard App - Problem Detail Page" width="240" border="10" /> <img src="doc/source/images/MyWardAppReportNewPage.png" alt="MyWard App - Report New Problem Page" width="240" border="10" />
 
-To test the Push notification feature, in one instance of the application, subscribe to receive notifications for a particular area in the 'Watch Area' page. In another instance of the application (running on a different phone) create a new grievance for the same area. The notification of the newly created grievance will be seen on the first instance of the application.
+
 
 
 
@@ -345,6 +341,7 @@ Please see instructions for [debugging Android hybrid app using Chrome Developer
 *	[Authentication and Security](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/authentication-and-security/)
 *	[Facebook Login](https://developers.facebook.com/docs/facebook-login)
 *	[Google SignIn](https://developers.google.com/identity/)
+*	[FCM setup](https://mobilefirstplatform.ibmcloud.com/tutorials/ru/foundation/8.0/notifications/handling-push-notifications/android/#fcm-project-setup)
 
 # License
 [Apache 2.0](LICENSE)
