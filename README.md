@@ -308,23 +308,22 @@ Verify MFP Adapter configuration as below:
 
 ## Step 10. Run application on Android phone
 
-Follow the instructions in [Step 7](https://github.com/IBM/Ionic-MFP-App#step-7-run-application-on-android-phone) of base project to run the application on Android phone.
+1. Follow the instructions in step 7.1 to 7.5 from [step7](https://github.com/IBM/Ionic-MFP-App#step-7-run-application-on-android-phone) of base project to run the application on Android phone. 
 
-**IMPORTANT** 
-
-1. After completing step "ionic cordova prepare" in the above link, open the Mobile foundation server dashboard and add the FCM server key and sender id generated in step 5 of this document.
+2. Open the Mobile foundation server dashboard and add the FCM server key and sender id generated in step 6 of this document.
 
 <img src="doc/source/images/Pushconfiguration.png" width="640"  border="10" />
-
-2. Add the google-service.json file generated in step 6 to the root of the android project directory. 
 
 3. In the Runtime settings of the application please create a confidential client with name 'test', secret 'test' and scope '**'.
 If different confidential client is used, then please modify the PushAPI adapter code to use the right confidential client encoded name and secret.
 
-Complete the remaining steps to run the application in the above link. 
-To test the Push notification feature, in one instance of the application, subscribe to receive notifications for a particular area in the 'Watch Area' page. In another instance of the application (running on a different phone) create a new grievance for the same area. The notification of the newly created grievance will be seen on the first instance of the application. 
+4. Add the google-service.json file generated in step 6 to the root of the android project directory. 
+
+5. Open the Project in android studio, build and run the app either using emulator or device. Please refer to the Troubleshooting section for more information on build related issues. 
+
+6. To test the Push notification feature, in one instance of the application, subscribe to receive notifications for a particular area in the 'Watch Area' page. In another instance of the application (running on a different phone) create a new grievance for the same area. The notification of the newly created grievance will be seen on the first instance of the application. 
 If you are using emulator to test, please setup the co-ordinates of the emulator to point to your current location.
-Please refer to the Troubleshooting section for more information on issues that you might face during the Push configuration. 
+
 
 <img src="doc/source/images/MyWardAppLoginPage.png" alt="MyWard App - Login Page" width="240" border="10" length="300" />
 
