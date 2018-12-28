@@ -81,7 +81,7 @@ Included Component
   - [8.5 Specify Google Sign-in credentials in MobileFoundation Adapter](#85-specify-google-sign-in-credentials-in-mobilefoundation-adapter)
   - [8.6 Specify the Facebook AppID and Google clientID in the Ionic App](#86-specify-the-facebook-appid-and-google-clientid-in-the-ionic-app)
 * [9. Deploy the MobileFoundation Adapters](#step-9-deploy-the-mobilefoundation-adapters)
-  - [9.1 Build and Deploy the MobileFoundation adapters](#91-build-and-deploy-the-mfp-adapters)
+  - [9.1 Build and Deploy the MobileFoundation adapters](#91-build-and-deploy-the-mobilefoundation-adapters)
   - [9.2 Launch MobileFoundation dashboard and verify adapter configurations](#92-launch-mobilefoundation-dashboard-and-verify-adapter-configurations)
   
 * [10. Run application on Android phone](https://github.com/IBM/Ionic-MFP-App#step-7-run-application-on-android-phone)
@@ -210,36 +210,40 @@ Open `MobileFoundationAdapters/SocialLoginAdapter/src/main/adapter-resources/ada
 
 1. Install the Cordova and Ionic Facebook plugin using following commands (Python2 is a pre-requisite)
 
-$ cd IonicMobileApp/
-$ ionic cordova plugin add cordova-plugin-facebook4 --variable APP_ID="your_appid_from_step7" --variable APP_NAME="your application name"
-$ npm install --save @ionic-native/facebook
-Note: If you get a message "Looks like a fresh checkout!" please go ahead and type Yes to install the project dependencies. This might take a few minutes. 
+	$ cd IonicMobileApp/
+
+	$ ionic cordova plugin add cordova-plugin-facebook4 --variable APP_ID="your_appid_from_step7" --variable APP_NAME="your application name"
+
+	$ npm install --save @ionic-native/facebook
+
+	Note: If you get a message "Looks like a fresh checkout!" please go ahead and type Yes to install the project dependencies. This might take a few minutes. 
 
 
 2. Install the Cordova and Ionic GooglePlus plugin using following commands
 
-$ ionic cordova plugin add cordova-plugin-googleplus --variable REVERSED_CLIENT_ID="reverseclientid_from_step7"
-$ npm install --save @ionic-native/google-plus
+	$ ionic cordova plugin add cordova-plugin-googleplus --variable REVERSED_CLIENT_ID="reverseclientid_from_step7"
 
-Note : The ```REVERSED_CLIENT_ID``` is the reverse form of the google webclientID obtained in step7.
+	$ npm install --save @ionic-native/google-plus
+
+	Note : The ```REVERSED_CLIENT_ID``` is the reverse form of the google webclientID obtained in step7.
 For example, if the webClientID is '0123456789-pr0123fhv2efj4635ertkgbn14tda2ha.apps.googleusercontent.com', then the REVERESED_CLIENT_ID will be 'com.googleusercontent.apps.0123456789-pr0123fhv2efj4635ertkgbn14tda2ha'
 
 
 3. After the facebook and googleplus plugins are installed, check if the Facebook App ID and Google webclientID obtained in [step 7](#7-register-android-app-with-google-and-facebook-for-social-login) are present in the config.xml file as shown below
 
-```
-<plugin name="cordova-plugin-facebook4" spec="^1.9.1">
+	```
+	<plugin name="cordova-plugin-facebook4" spec="^1.9.1">
         <variable name="APP_ID" value="your_appid" />
         <variable name="APP_NAME" value="MyWard" />
     </plugin>
-```
-```
-<plugin name="cordova-plugin-googleplus" spec="^5.3.0">
+	```
+	```
+	<plugin name="cordova-plugin-googleplus" spec="^5.3.0">
         <variable name="REVERSED_CLIENT_ID" value="your_reverse_clientid" />
     </plugin>
-```
+	```
 
-Also add the webclientID in the auth_handler.ts file in the googlePlusLogin() method.
+4. Also add the webclientID in the auth_handler.ts file in the googlePlusLogin() method.
 
 
 ## Step 9. Deploy the MobileFoundation Adapters
