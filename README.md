@@ -100,26 +100,26 @@ This project builds on top of https://github.com/IBM/Ionic-MFP-App. Run followin
 
 ### 5.1 Create Geospatial Index in Cloudant database.
 
-Launch the cloudant database (created in step 2 above) console, and create the following design document 'geodd' with index name 'geoidx'
-
+Launch the cloudant database (created in step 2 above) console, and create the following design document `geodd` with index name geoidx`
+```
 "function(doc) {
 if (doc.geoLocation && doc.geoLocation.coordinates) 
 {st_index(doc.geoLocation);}
 }"  
-
+```
 
 <img src="doc/source/images/CloudantGeoSpatialIndex.png" alt="Geospatialindex" width="720" border="10" />
 
 
-Given location co-ordinates (latitude,longitude), this index helps to query the grievances reported within a given radius with centre as this co-ordinate.
+Given location co-ordinates (latitude, longitude), this index helps to query the grievances reported within a given radius with centre as this co-ordinate.
 
 ### 5.2 Loading data into Cloudant database
-Step 2 in this readme has instructions to load data into the Cloudant database. Sample data has been provided. This sample data is for location 'Hoskote' near Bangalore, India. The 'MyWard' application loads the home page with the issues that are reported in the area of the current user location. So to test the application, please load few entries of data (in the same format as the Sample data)  that belongs to the location where the test device is located. These entries will show up in the home page on login. If there are no matching entries available in the database, then a message will pop up that "No issues reported in your current location". You can also add new entries for your current location through the 'MyWard' application 'Report New' page.
+Step 2 in this readme has instructions to load data into the Cloudant database. Sample data has been provided. This sample data is for location 'Hoskote' near Bangalore, India. The 'MyWard' application loads the home page with the issues that are reported in the area of the current user location. So to test the application, please load few entries of data (in the same format as the Sample data) that belongs to the location where the test device is located. These entries will show up in the home page on login. If there are no matching entries available in the database, then a message will pop up that "No issues reported in your current location". You can also add new entries for your current location through the `MyWard` application `Report New` page.
 
 
 ## Step 6. Setup FCM for android push notifications
 
-Obtain your notification provider credentials, create a FCM project and add the same to your Android application. Include the package name of your application as com.ibm.mobilefirstplatform.clientsdk.android.push. Refer the documentation [here](https://console.bluemix.net/docs/services/mobilepush/push_step_1.html#push_step_1_android) , until the step where you have finished generating the google-services.json file. Note down the sender ID, ServerKey and save the google-services.json file. These details will be used in step 10.
+Obtain your notification provider credentials, create a FCM project and add the same to your Android application. Include the package name of your application as `com.ibm.mobilefirstplatform.clientsdk.android.push`. Refer the documentation [here](https://console.bluemix.net/docs/services/mobilepush/push_step_1.html#push_step_1_android), until the step where you have finished generating the `google-services.json` file. Note down the sender ID, ServerKey and save the `google-services.json` file. These details will be used in step 10.
 
 
 ## Step 7. Register Android App with Google and Facebook for Social Login
@@ -195,7 +195,7 @@ Open `MobileFoundationAdapters/MyWardData/src/main/adapter-resources/adapter.xml
 
 
 ### 8.5 Specify Google Sign-in credentials in MobileFoundation Adapter
-Open `MobileFoundationAdapters/SocialLoginAdapter/src/main/adapter-resources/adapter.xml ' and update the google client-id created in [step 7](#step-7-register-android-app-with-google-and-facebook-for-social-login) as shown below
+Open `MobileFoundationAdapters/SocialLoginAdapter/src/main/adapter-resources/adapter.xml` and update the google client-id created in [step 7](#step-7-register-android-app-with-google-and-facebook-for-social-login) as shown below
 
 <pre><code>
 &lt;property name="google.clientId"
@@ -209,41 +209,41 @@ Open `MobileFoundationAdapters/SocialLoginAdapter/src/main/adapter-resources/ada
 ### 8.6 Specify the Facebook AppID and Google clientID in the Ionic App
 
 1. Install the Cordova and Ionic Facebook plugin using following commands (Python2 is a pre-requisite)
-
+```
 	$ cd IonicMobileApp/
 
 	$ ionic cordova plugin add cordova-plugin-facebook4 --variable APP_ID="your_appid_from_step7" --variable APP_NAME="your application name"
 
 	$ npm install --save @ionic-native/facebook
-
-	Note: If you get a message "Looks like a fresh checkout!" please go ahead and type Yes to install the project dependencies. This might take a few minutes. 
+```
+Note: If you get a message "Looks like a fresh checkout!" please go ahead and type `Yes` to install the project dependencies. This might take a few minutes. 
 
 
 2. Install the Cordova and Ionic GooglePlus plugin using following commands
-
+```
 	$ ionic cordova plugin add cordova-plugin-googleplus --variable REVERSED_CLIENT_ID="reverseclientid_from_step7"
 
 	$ npm install --save @ionic-native/google-plus
+```
+Note: The ```REVERSED_CLIENT_ID``` is the reverse form of the google webclientID obtained in step7.
+For example, if the webClientID is `0123456789-pr0123fhv2efj4635ertkgbn14tda2ha.apps.googleusercontent.com`, then the `REVERSED_CLIENT_ID` will be `com.googleusercontent.apps.0123456789-pr0123fhv2efj4635ertkgbn14tda2ha`
 
-	Note : The ```REVERSED_CLIENT_ID``` is the reverse form of the google webclientID obtained in step7.
-For example, if the webClientID is '0123456789-pr0123fhv2efj4635ertkgbn14tda2ha.apps.googleusercontent.com', then the REVERESED_CLIENT_ID will be 'com.googleusercontent.apps.0123456789-pr0123fhv2efj4635ertkgbn14tda2ha'
 
+3. After the facebook and googleplus plugins are installed, check if the Facebook App ID and Google webclientID obtained in [step 7](#7-register-android-app-with-google-and-facebook-for-social-login) are present in the `config.xml` file as shown below
 
-3. After the facebook and googleplus plugins are installed, check if the Facebook App ID and Google webclientID obtained in [step 7](#7-register-android-app-with-google-and-facebook-for-social-login) are present in the config.xml file as shown below
-
-	```
+```
 	<plugin name="cordova-plugin-facebook4" spec="^1.9.1">
         <variable name="APP_ID" value="your_appid" />
         <variable name="APP_NAME" value="MyWard" />
     </plugin>
-	```
-	```
+
 	<plugin name="cordova-plugin-googleplus" spec="^5.3.0">
         <variable name="REVERSED_CLIENT_ID" value="your_reverse_clientid" />
     </plugin>
-	```
+```
 
-4. Also add the webclientID in the auth_handler.ts file in the googlePlusLogin() method.
+
+4. Also add the webclientID in the `auth_handler.ts` file in the googlePlusLogin() method.
 
 
 ## Step 9. Deploy the MobileFoundation Adapters
@@ -259,7 +259,7 @@ $ mfpdev adapter build
 $ mfpdev adapter deploy 
 ```
 
-Note- If the server is not a default one, please mention the server name 'mfpdev adapter deploy command' in the command.
+Note: If the server is not a default one, please mention the server name `mfpdev adapter deploy command` in the command.
 
 
 Build and deploy `UserLogin` adapter as below.
@@ -301,7 +301,7 @@ Verify MFP Adapter configuration as below:
     
   <img src="doc/source/images/MyWardDataProtectingScope.png" alt="The REST APIs of MyWardData adapter are protected by UserLogin security scope" width="640" border="10" />
 
-2.	Click open the 'SocialLoginSecurityCheck' to check its configuration.
+  2. Click open the `SocialLoginSecurityCheck` to check its configuration.
  	<img src="doc/source/images/SocialLoginAdapterConfiguration.png" width="640"  border="10" />
 
 
@@ -314,14 +314,14 @@ Verify MFP Adapter configuration as below:
 
 <img src="doc/source/images/Pushconfiguration.png" width="640"  border="10" />
 
-3. In the Runtime settings of the application please create a confidential client with name 'test', secret 'test' and scope '**'.
+3. In the Runtime settings of the application please create a confidential client with name `test`, secret `test` and scope `**`.
 If different confidential client is used, then please modify the PushAPI adapter code to use the right confidential client encoded name and secret.
 
-4. Add the google-service.json file generated in step 6 to the root of the android project directory. 
+4. Add the `google-service.json` file generated in step 6 to the root of the android project directory. 
 
 5. Open the Project in android studio, build and run the app either using emulator or device. Please refer to the Troubleshooting section for more information on build related issues. 
 
-6. To test the Push notification feature, in one instance of the application, subscribe to receive notifications for a particular area in the 'Watch Area' page. In another instance of the application (running on a different phone) create a new grievance for the same area. The notification of the newly created grievance will be seen on the first instance of the application. 
+6. To test the Push notification feature, in one instance of the application, subscribe to receive notifications for a particular area in the `Watch Area` page. In another instance of the application (running on a different phone) create a new grievance for the same area. The notification of the newly created grievance will be seen on the first instance of the application. 
 If you are using emulator to test, please setup the co-ordinates of the emulator to point to your current location.
 
 
