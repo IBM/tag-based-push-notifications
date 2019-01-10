@@ -63,6 +63,7 @@ Included Component
 * [Mobile](https://mobilefirstplatform.ibmcloud.com/): Systems of engagement are increasingly using mobile technology as the platform for delivery.
 
 # Watch the Video
+https://youtu.be/g5WYpchw7-Q
 
 # Steps
 
